@@ -1,5 +1,5 @@
 const container = document.querySelector(".container");
-const seat = document.querySelectorAll(".row .seat:not(.occupied)");
+const seats = document.querySelectorAll(".row .seat:not(.occupied)");
 const count = document.getElementById("count");
 const total = document.getElementById("total");
 
@@ -10,6 +10,12 @@ let ticketPrice = parseInt(movieSelect.value);
 // update total and count
 const updateSelectedCount = () => {
     const selectedSeats = document.querySelectorAll('.row .seat.selected')
+
+    const seatsIndex = [...selectedSeats].map((seat, index) => {
+        return [...seats].indexOf(seat)
+    })
+
+    localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex))
 
     const selectedSeatsCount = selectedSeats.length
 
@@ -31,6 +37,5 @@ container.addEventListener("click", (e) => {
       e.target.classList.toggle('selected')
 
       updateSelectedCount()
-    console.log(e.target);
   }
 });
