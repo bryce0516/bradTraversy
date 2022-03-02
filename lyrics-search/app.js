@@ -5,7 +5,7 @@ const app = express();
 
 app.use(
   "/static",
-  express.static(path.resolve(__dirname, "./public"), {
+  express.static(path.resolve(__dirname, "./src/static"), {
     extensions: ["js", "css"],
   })
 );
